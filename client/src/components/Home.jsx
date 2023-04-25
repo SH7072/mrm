@@ -31,6 +31,8 @@ const Home = () => {
       navigate('/submit');
     }
 
+
+
     console.log(data);
 
   }
@@ -45,13 +47,10 @@ const Home = () => {
       {/* <form method="post" encType="multipart/form-data"> */}
       <label htmlFor="name">Name:</label>
       <input type="text" id="name" name="name" required value={name} onChange={(e) => { setName(e.target.value) }} /><br></br>
-
       <label htmlFor="email">Email:</label>
       <input type="email" id="email" name="email" required value={email} onChange={(e) => { setEmail(e.target.value) }} /><br></br>
-
       <label htmlFor="file">Choose a file:</label>
       <input type="file" id="file" name="file" onChange={handleFile} /><br></br>
-
       <input type="submit" value="Submit" onClick={submit} />
       {/* </form> */}
     </div>
