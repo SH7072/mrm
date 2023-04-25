@@ -7,11 +7,10 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 // const swaggerJsDoc = require("swagger-jsdoc");
-// const swaggerUi = require("swagger-ui-express");
+const swaggerUI = require("swagger-ui-express");
+const { apiDoc } = require('./utils/docs');
 
-
-
-
+app.use(express.static('public'));
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ extended: true }, { limit: '50mb' }));
 app.use(
@@ -22,6 +21,9 @@ app.use(
     })
 );
 
+app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(apiDoc));
+
+
 const connectDB = async () => {
     const { connection } = await mongoose.connect(process.env.MONGO_URI);
     console.log(`MongoDB connected with ${connection.host}`);
@@ -30,12 +32,15 @@ const connectDB = async () => {
 connectDB();
 
 
-app.use("user", user);
+app.use("/user", user);
 
 app.get("/", (req, res) =>
     res.send(
-        'Hi')
+        'Hi'
+    )
 );
 
 
-app.listen(process.env.PORT);
+app.listen(process.env.PORT, () => {
+    console.log(`Server running on port ${process.env.PORT}`);
+});
