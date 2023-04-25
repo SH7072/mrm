@@ -7,7 +7,8 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 // const swaggerJsDoc = require("swagger-jsdoc");
-// const swaggerUi = require("swagger-ui-express");
+const swaggerUI = require("swagger-ui-express");
+const { apiDoc } = require('./utils/docs');
 
 
 
@@ -21,6 +22,9 @@ app.use(
         methods: ["GET", "POST", "PUT", "DELETE"],
     })
 );
+
+app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(apiDoc));
+
 
 const connectDB = async () => {
     const { connection } = await mongoose.connect(process.env.MONGO_URI);
