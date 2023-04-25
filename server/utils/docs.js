@@ -22,10 +22,83 @@ exports.apiDoc = {
                         content: {
                             'application/json': {
                                 schema: {
-                                    $ref: '#/components/schemas/User',
+                                    type: 'object',
+                                    properties: {
+                                        success: {
+                                            type: 'boolean',
+                                        },
+                                        data: {
+                                            type: 'object',
+                                            schema: {
+                                                type: 'object',
+                                                ref: '#/components/schemas/User',
+                                            },
+                                        },
+                                    },
+
                                 },
                             },
                         },
+                    },
+                },
+            },
+        },
+        '/user/formSubmit': {
+            post: {
+                tags: ['User'],
+                description: 'Create a new user',
+                operationId: 'createUser',
+                requestBody: {
+                    content: {
+                        'multipart/form-data': {
+                            schema: {
+                                type: 'object',
+                                properties: {
+                                    name: {
+                                        type: 'string',
+                                        description: "The user's name",
+                                        required: true,
+                                    },
+                                    email: {
+                                        type: 'string',
+                                        description: "The user's email",
+                                        required: true,
+                                    },
+                                    uri: {
+                                        type: 'string',
+                                        description: "The user's uri",
+                                        required: true,
+                                    },
+                                },
+                            },
+                        },
+                    },
+                },
+                responses: {
+                    '200': {
+                        description: 'User created successfully',
+                        content: {
+                            'application/json': {
+                                schema: {
+                                    type: 'object',
+                                    properties: {
+                                        success: {
+                                            type: 'boolean',
+                                        },
+                                        data: {
+                                            type: 'object',
+                                            schema: {
+                                                type: 'object',
+                                                ref: '#/components/schemas/User',
+                                            },
+                                        },
+                                    },
+                                },
+                            },
+                        },
+                    },
+                    '500': {
+                        description: 'Server error',
                     },
                 },
             },
