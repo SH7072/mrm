@@ -30,12 +30,15 @@ const connectDB = async () => {
 connectDB();
 
 
-app.use("user", user);
+app.use("/user", user);
 
 app.get("/", (req, res) =>
     res.send(
-        'Hi')
+        'Hi'
+    )
 );
 
 
-app.listen(process.env.PORT);
+app.listen(process.env.PORT, () => {
+    console.log(`Server running on port ${process.env.PORT}`);
+});

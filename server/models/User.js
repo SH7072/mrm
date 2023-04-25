@@ -12,7 +12,7 @@ const schema = new mongoose.Schema({
     },
     uri: {
         type: String,
-        required: true,
+        // required: true,
 
     },
     createdAt: {

@@ -20,7 +20,7 @@ const Home = () => {
         name, email, file
       })
     });
-    const data = res.json();
+    const data = await res.json();
 
 
 
