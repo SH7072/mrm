@@ -3,11 +3,18 @@ const User = require("../models/User");
 exports.formSubmit = async (req, res, next) => {
     try {
         const { name, email, uri } = req.body;
+        console.log(req.file.path);
+
+        const path = req.file.path.split("\\");
+        console.log(path);
+
         const user = await User.create({
             name,
             email,
-            uri,
+            uri: path[2],
         });
+
+        console.log(user);
         res.status(201).json({
             success: true,
             data: user
