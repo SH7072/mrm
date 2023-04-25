@@ -4,7 +4,7 @@ const { formSubmit, getUser } = require("../controller/userController");
 const { upload } = require("../middleware/multer");
 
 
-router.post("/formSubmit", upload.single('uri'), formSubmit);
+router.post("/formSubmit", upload.single('file'), formSubmit);
 router.get("/getUser", getUser);
 
 /**
