@@ -1,10 +1,14 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
+
 
 const Home = () => {
 
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [file, setFile] = useState('');
+
+  const navigate = useNavigate();
 
   const submit = async () => {
 
@@ -23,7 +27,9 @@ const Home = () => {
     });
     const data = await res.json();
 
-
+    if (data.success === true) {
+      navigate('/submit');
+    }
 
     console.log(data);
 
