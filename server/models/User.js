@@ -12,7 +12,7 @@ const schema = new mongoose.Schema({
     },
     uri: {
         type: String,
-        // required: true,
+        required: false,
 
     },
     createdAt: {
@@ -20,5 +20,4 @@ const schema = new mongoose.Schema({
         default: Date.now,
     },
 });
-
 module.exports = mongoose.model("User", schema);
